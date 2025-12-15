@@ -1,3 +1,3 @@
 Work In Progress ...
 
-idk [Test]([https://pages.github.com/](https://nnnnnoooooeeeee.github.io/WuWa-Characters-DB/))
+[Test](https://nnnnnoooooeeeee.github.io/WuWa-Characters-DB/](https://nnnnnoooooeeeee.github.io/WuWa-Characters-DB/))
