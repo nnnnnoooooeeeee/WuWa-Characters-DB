@@ -1,6 +1,6 @@
 const list = document.getElementById("list");
 
-fetch('/wuwa_data.json')
+fetch('./wuwa_data.json')
     .then(res => res.json())
     .then(data => {
         data.forEach(post => {
@@ -19,4 +19,5 @@ fetch('/wuwa_data.json')
             list.insertAdjacentHTML("beforeend", resonator);
         });
         //console.log(data);
+
     });
