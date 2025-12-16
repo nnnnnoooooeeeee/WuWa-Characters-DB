@@ -273,7 +273,7 @@
 },
 {
   "id": "22",
-  "name": "Shorekeeper",
+  "name": "The Shorekeeper",
   "affiliation": "Black Shores",
   "gender": "F",
   "attribute": "Spectro",
@@ -531,3 +531,4 @@
   "version": "2.8",
   "release": "2025-12-11"
 }]
+
