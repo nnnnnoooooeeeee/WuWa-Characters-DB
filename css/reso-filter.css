@@ -1,8 +1,19 @@
+/* filter container*/
 .filter-container{
     background-color: lightgreen;
     display: grid;
+    grid-template-areas: 
+    "dropdown-sort attri"
+    "counter weapon"
+    "counter rarity";
 }
+/*sort*/
+.dropdown-sort{
+    grid-area: dropdown-sort;
+}
+/*attribute*/
 .attribute-container{
+    grid-area: attri;
     background-color: lightblue;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -10,7 +21,12 @@
 .attri{
     background-color: "";
 }
+.attri:hover{
+    background-color: lightskyblue;
+}
+/*weapon*/
 .weapon-container{
+    grid-area: weapon;
     background-color: lightpink;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -18,7 +34,12 @@
 .weapon{
     background-color: "";
 }
+.weapon:hover{
+    background-color: pink;
+}
+/*rarity*/
 .rarity-container{
+    grid-area: rarity;
     background-color: lightcoral;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -26,4 +47,12 @@
 }
 .rarity{
     background-color: "";
+}
+.rarity:hover{
+    background-color: coral;
+}
+/*Counter*/
+.counter{
+    grid-area: counter;
+    background-color: purple;
 }
