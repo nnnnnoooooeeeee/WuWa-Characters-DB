@@ -1,0 +1,29 @@
+.list-container{
+    border: 5px solid black;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+}
+.item{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    background-color: pink;
+    font-size: 17pt;
+}
+.name{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+
+    color: blue;
+}
+.attribute{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    color: red;
+}

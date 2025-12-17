@@ -1,0 +1,20 @@
+#videoContainer {
+    display: none;
+    position: absolute;
+}
+.close-button {
+    position: absolute; 
+    top: -50px;
+    right: -50px;
+}
+.close-button:hover {
+    background-color: #d32f2f;
+}
+.yt-container{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    /*border: 3px black solid;*/
+    min-height: 600px;
+}

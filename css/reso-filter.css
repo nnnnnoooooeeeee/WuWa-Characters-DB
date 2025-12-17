@@ -1,0 +1,29 @@
+.filter-container{
+    background-color: lightgreen;
+    display: grid;
+}
+.attribute-container{
+    background-color: lightblue;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.attri{
+    background-color: "";
+}
+.weapon-container{
+    background-color: lightpink;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.weapon{
+    background-color: "";
+}
+.rarity-container{
+    background-color: lightcoral;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+.rarity{
+    background-color: "";
+}
