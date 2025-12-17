@@ -9,8 +9,8 @@
 }
 .item{
     position: relative;
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
     background-color: pink;
     font-size: 12pt;
 }
@@ -28,4 +28,5 @@
     color: red;
 
 }
+
 
