@@ -3,22 +3,69 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="./css/navbar.css">
+      <link rel="stylesheet" href="./css/resonators.css">
+      <link rel="stylesheet" href="./css/body.css">
+      <link rel="stylesheet" href="./css/reso-filter.css">
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
       <title>Wuthering Waves</title>
    </head>
 
    <body>
-      <div class="nav-container">
+      <nav class="nav-container">
          <div class="nav"><a href="./index.html">Wuthering Waves</a></div>
          <div class="nav"><a href="./index.html">HOME</a></div>
          <div class="nav"><a class="active" href="./resonators.html">RESONATORS</a></div>
          <div class="nav"><a href="./lore.html">LORE</a></div>
          <div class="nav"><a href="./region.html">REGION</a></div>
          <div class="nav"><a href="./gallery.html">GALLERY</a></div>
-      </div>
+      </nav>
 
-      <h1>Resonators</h1>
-      <div class="grid grid-cols-4 grid-rows-3 gap-3" id="list"></div>
+      <main>
+         <h1>Resonators</h1>
+
+         
+         <div class="filter-container">
+            <select id="dropdown-sort">
+               <option value="" disabled selected>-- Sort By --</option>
+               <option value="name">Name</option>
+               <option value="release-date">Release Date</option>
+               <option value="rarity">Rarity</option>
+               <option value="attribute">Attribute</option>
+               <option value="weapon">Weapon</option>
+               <option value="gender">Gender</option>
+               <option value="affiliation">Affiliation</option>
+            </select>
+            <div class="attribute-container">
+               <div class="attri"><a value="">Spectro</a></div>
+               <div class="attri"><a value="">Havoc</a></div>
+               <div class="attri"><a value="">Fusion</a></div>
+               <div class="attri"><a value="">Electro</a></div>
+               <div class="attri"><a value="">Glacio</a></div>
+               <div class="attri"><a value="">Aero</a></div>
+            </div>
+            <div class="weapon-container">
+               <div class="weapon"><a value="">Sword</a></div>
+               <div class="weapon"><a value="">Broadblade</a></div>
+               <div class="weapon"><a value="">Pistols</a></div>
+               <div class="weapon"><a value="">Rectifier</a></div>
+               <div class="weapon"><a value="">Gauntlets</a></div>
+            </div>
+            <div class="rarity-container">
+               <div class="rarity"><a value="">5 stars</a></div>
+               <div class="rarity"><a value="">4 stars</a></div>
+            </div>
+         </div>
+
+         <div class="list-container" id="list"">
+            <div class="item">
+               <img src="./assets/chars_icon/5.png">
+               <div class="name">VERINA TEST</div>
+               <div class="attribute">Spectro</div>
+            </div>
+         </div>
+      </main>
+
+      <footer>by nnnnnoooooeeeee</footer>
       <script src="./js/resonators.js"></script>
    </body>
 </html>
