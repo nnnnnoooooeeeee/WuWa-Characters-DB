@@ -4,6 +4,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="./css/bg.css">
       <link rel="stylesheet" href="./css/navbar.css">
+      <link rel="stylesheet" href="./css/yt.css">
+      <link rel="stylesheet" href="./css/body.css">
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
       <title>Wuthering Waves</title>
    </head>
@@ -12,15 +14,28 @@
       <video autoplay muted loop id="bg">
          <source src="./assets/bg.mp4" type="video/mp4">
       </video>
-      <div class="nav-container">
+      <nav class="nav-container">
          <div class="nav"><a href="./index.html">Wuthering Waves</a></div>
          <div class="nav"><a class="active" href="./index.html">HOME</a></div>
          <div class="nav"><a href="./resonators.html">RESONATORS</a></div>
          <div class="nav"><a href="./lore.html">LORE</a></div>
          <div class="nav"><a href="./region.html">REGION</a></div>
          <div class="nav"><a href="./gallery.html">GALLERY</a></div>
-      </div>
+      </nav>
 
-      <h1>HOME</h1>
+      <main>
+         <div class="yt-container">
+            <img class="yt-button" src="./assets/icons/yt_play.png" onclick="showVideo()">
+            <div id="videoContainer">
+               <img class="close-button" src="./assets/icons/yt_close.png" onclick="closeVideo()">
+               <iframe width="640" height="360" src="https://www.youtube.com/embed/1Lr41l-eJUw" frameborder="0" allowfullscreen></iframe>
+            </div>
+         </div>
+         
+      </main>
+
+      <footer>by nnnnnoooooeeeee</footer>
+
+      <script src="./js/yt.js"></script>
    </body>
 </html>
