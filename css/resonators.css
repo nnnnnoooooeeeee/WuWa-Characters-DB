@@ -12,7 +12,7 @@
     height: 120px;
     width: 120px;
     background-color: pink;
-    font-size: 17pt;
+    font-size: 12pt;
 }
 .name{
     position: absolute;
@@ -28,3 +28,4 @@
     color: red;
 
 }
+
