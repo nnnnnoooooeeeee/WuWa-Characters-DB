@@ -6,7 +6,6 @@
       <link rel="stylesheet" href="./css/resonators.css">
       <link rel="stylesheet" href="./css/body.css">
       <link rel="stylesheet" href="./css/reso-filter.css">
-      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
       <title>Wuthering Waves</title>
    </head>
 
@@ -22,7 +21,8 @@
 
       <main>
          <h1>Resonators</h1>
-
+         <button id="testing" onclick="updateToggleValue()">Test</button>
+         <input type="text" id="filter-value" name="fname"><br><br>
          
          <div class="filter-container">
             <select id="dropdown-sort">
@@ -35,35 +35,30 @@
                <option value="gender">Gender</option>
                <option value="affiliation">Affiliation</option>
             </select>
+            <div class="sort-btn" id="sort-btn"> ^v </div>
             <div class="attribute-container">
-               <div class="attri"><a value="">Spectro</a></div>
-               <div class="attri"><a value="">Havoc</a></div>
-               <div class="attri"><a value="">Fusion</a></div>
-               <div class="attri"><a value="">Electro</a></div>
-               <div class="attri"><a value="">Glacio</a></div>
-               <div class="attri"><a value="">Aero</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Spectro')">Spectro</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Havoc')">Havoc</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Fusion')">Fusion</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Electro')">Electro</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Glacio')">Glacio</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Aero')">Aero</a></div>
             </div>
             <div class="weapon-container">
-               <div class="weapon"><a value="">Sword</a></div>
-               <div class="weapon"><a value="">Broadblade</a></div>
-               <div class="weapon"><a value="">Pistols</a></div>
-               <div class="weapon"><a value="">Rectifier</a></div>
-               <div class="weapon"><a value="">Gauntlets</a></div>
+               <div class="weapon"><a onclick="toggleValue(this, 'Sword')">Sword</a></div>
+               <div class="weapon"><a onclick="toggleValue(this, 'Broadblade')">Broadblade</a></div>
+               <div class="weapon"><a onclick="toggleValue(this, 'Pistols')">Pistols</a></div>
+               <div class="weapon"><a onclick="toggleValue(this, 'Rectifier')">Rectifier</a></div>
+               <div class="weapon"><a onclick="toggleValue(this, 'Gauntlets')">Gauntlets</a></div>
             </div>
             <div class="rarity-container">
-               <div class="rarity"><a value="">5 stars</a></div>
-               <div class="rarity"><a value="">4 stars</a></div>
+               <div class="rarity"><a onclick="toggleValue(this, '5')">5 stars</a></div>
+               <div class="rarity"><a onclick="toggleValue(this, '4')">4 stars</a></div>
             </div>
-            <div class="counter">Counter : </div>
+            <div class="counter" id="counter">Counter : </div>
          </div>
 
-         <div class="list-container" id="list"">
-            <div class="item">
-               <img src="./assets/chars_icon/5.png">
-               <div class="name">VERINA TEST</div>
-               <div class="attribute">Spectro</div>
-            </div>
-         </div>
+         <div class="list-container" id="list""></div>
       </main>
 
       <footer>by nnnnnoooooeeeee</footer>
