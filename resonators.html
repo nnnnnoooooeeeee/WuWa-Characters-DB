@@ -21,8 +21,10 @@
 
       <main>
          <h1>Resonators</h1>
-         <button id="testing" onclick="updateToggleValue()">Test</button>
-         <input type="text" id="filter-value" name="fname"><br><br>
+         <input type="text" id="filter-value-attribute" name="fname"><br><br>
+         <input type="text" id="filter-value-weapon" name="fname"><br><br>
+         <input type="text" id="filter-value-rarity" name="fname"><br><br>
+         <button id="reset" onclick="resetValueFilter()">RESET</button>
          
          <div class="filter-container">
             <select id="dropdown-sort">
@@ -37,23 +39,23 @@
             </select>
             <div class="sort-btn" id="sort-btn"> ^v </div>
             <div class="attribute-container">
-               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Spectro')">Spectro</a></div>
-               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Havoc')">Havoc</a></div>
-               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Fusion')">Fusion</a></div>
-               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Electro')">Electro</a></div>
-               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Glacio')">Glacio</a></div>
-               <div class="attri" id="attri"><a onclick="toggleValue(this, 'Aero')">Aero</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValueAttribute(this, 'Spectro')">Spectro</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValueAttribute(this, 'Havoc')">Havoc</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValueAttribute(this, 'Fusion')">Fusion</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValueAttribute(this, 'Electro')">Electro</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValueAttribute(this, 'Glacio')">Glacio</a></div>
+               <div class="attri" id="attri"><a onclick="toggleValueAttribute(this, 'Aero')">Aero</a></div>
             </div>
             <div class="weapon-container">
-               <div class="weapon"><a onclick="toggleValue(this, 'Sword')">Sword</a></div>
-               <div class="weapon"><a onclick="toggleValue(this, 'Broadblade')">Broadblade</a></div>
-               <div class="weapon"><a onclick="toggleValue(this, 'Pistols')">Pistols</a></div>
-               <div class="weapon"><a onclick="toggleValue(this, 'Rectifier')">Rectifier</a></div>
-               <div class="weapon"><a onclick="toggleValue(this, 'Gauntlets')">Gauntlets</a></div>
+               <div class="weapon"><a onclick="toggleValueWeapon(this, 'Sword')">Sword</a></div>
+               <div class="weapon"><a onclick="toggleValueWeapon(this, 'Broadblade')">Broadblade</a></div>
+               <div class="weapon"><a onclick="toggleValueWeapon(this, 'Pistols')">Pistols</a></div>
+               <div class="weapon"><a onclick="toggleValueWeapon(this, 'Rectifier')">Rectifier</a></div>
+               <div class="weapon"><a onclick="toggleValueWeapon(this, 'Gauntlets')">Gauntlets</a></div>
             </div>
             <div class="rarity-container">
-               <div class="rarity"><a onclick="toggleValue(this, '5')">5 stars</a></div>
-               <div class="rarity"><a onclick="toggleValue(this, '4')">4 stars</a></div>
+               <div class="rarity"><a onclick="toggleValueRarity(this, '5')">5 stars</a></div>
+               <div class="rarity"><a onclick="toggleValueRarity(this, '4')">4 stars</a></div>
             </div>
             <div class="counter" id="counter">Counter : </div>
          </div>
