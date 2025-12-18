@@ -3,9 +3,9 @@
     background-color: lightgreen;
     display: grid;
     grid-template-areas: 
-    "dropdown-sort attri"
-    "counter weapon"
-    "counter rarity";
+    "dropdown-sort sort-btn attri attri attri attri"
+    "counter counter weapon weapon weapon weapon"
+    "counter counter rarity rarity rarity rarity";
 }
 /*sort*/
 .dropdown-sort{
@@ -30,6 +30,7 @@
     background-color: lightpink;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
 }
 .weapon{
     background-color: "";
@@ -54,5 +55,10 @@
 /*Counter*/
 .counter{
     grid-area: counter;
-    background-color: purple;
+    background-color: rgb(255, 122, 255);
+}
+.sort-btn{
+    grid-area: sort-btn;
+    background-color: rgb(224, 250, 131);
+    //width: 10%;
 }
