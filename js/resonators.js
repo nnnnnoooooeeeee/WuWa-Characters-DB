@@ -5,7 +5,7 @@ const filterWeapon = ['Sword'];
 async function loadWutheringData() {
     const res = await fetch('./wuwa_data.json');
     const data = await res.json();
-    var counter = 1;
+    var counter = 0;
 
     //filter filterattribute
     data.filter(post => {
@@ -60,3 +60,4 @@ function bgattribute(value) {
 
 
 //-----------------------------   TEST   ---------------------------------------------
+
