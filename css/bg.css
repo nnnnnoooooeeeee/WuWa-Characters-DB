@@ -1,14 +1,26 @@
 /*background video*/
 #bg {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
   z-index: -1;
-  background-size: cover;
-  background-position: center;
+  
+  inset: 0;
+  
 } 
+#bg-m {
+  position: fixed;
+  z-index: -1;
+  
+  object-fit: cover;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+} 
+@media (min-width: 549px) {
+  #bg-m {
+    display: none;
+  }
+}
+
 
 @media (min-aspect-ratio: 16/9){
   #bg{
