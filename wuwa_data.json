@@ -273,7 +273,7 @@
 },
 {
   "id": "22",
-  "name": "The Shorekeeper",
+  "name": "Shorekeeper",
   "affiliation": "Black Shores",
   "gender": "F",
   "attribute": "Spectro",
@@ -293,7 +293,7 @@
   "weapon": "Gauntlets",
   "birthday": "October 13",
   "va": "",
-  "rarity": "5",
+  "rarity": "4",
   "version": "1.3",
   "release": "2024-10-24"
 },
@@ -531,4 +531,3 @@
   "version": "2.8",
   "release": "2025-12-11"
 }]
-
