@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Menjaga ukuran tetap konsisten walau ada padding */
+}
 body{
     min-height: 100vh;
     display: grid;
@@ -6,14 +11,37 @@ body{
     "navbar" 
     "main"
     "footer";
-    nav{
-        grid-area: navbar;
-    }
-    main{
-        grid-area: main;
-        position: relative;
-    }
-    footer{
-        grid-area: footer;
-    }
+    /* background-color: rgb(49, 49, 49); */
+    width: 100%;
+    height: 100%;
+
+    background: #000000;
+    --gap: 5em;
+    --line: 1px;
+    --color: rgba(255, 255, 255, 0.2);
+
+    background-image: linear-gradient(
+        -90deg,
+        transparent calc(var(--gap) - var(--line)),
+        var(--color) calc(var(--gap) - var(--line) + 1px),
+        var(--color) var(--gap)
+        ),
+        linear-gradient(
+        0deg,
+        transparent calc(var(--gap) - var(--line)),
+        var(--color) calc(var(--gap) - var(--line) + 1px),
+        var(--color) var(--gap)
+        );
+    background-size: var(--gap) var(--gap);
+}
+nav{
+    grid-area: navbar;
+}
+main{
+    grid-area: main;
+    position: relative;
+}
+footer{
+    grid-area: footer;
+    background-color: white;
 }
