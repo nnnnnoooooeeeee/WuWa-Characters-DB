@@ -1,63 +1,119 @@
 const list = document.getElementById("list");
 const filterAtribut = [];
-const filterWeapon = ['Sword'];
+const filterWeapon = [];
+const filterRarity = [];
+const reset = [];
+const filterRules = {
+    attribute: filterAtribut,
+    weapon: filterWeapon,
+    rarity: filterRarity
+};
 
 async function loadWutheringData() {
     const res = await fetch('./wuwa_data.json');
     const data = await res.json();
-    var counter = 0;
+    let counter = 0;
 
-    //filter filterattribute
-    data.filter(post => {
-        if (filterAtribut.length > 0) {
-            return filterAtribut.includes(post.attribute);
-        } else{
-            return true;
+    const filteredData = data.filter(post => {
+        for (const key in filterRules) {
+            if (!filterRules[key] || filterRules[key].length === 0) continue;
+
+            if (!filterRules[key].includes(post[key])) {
+                return false;
+            }
         }
-    })
-    //show
-        .map((post)=>{
-            const resonator =
-                `<div class="item">
-                    <img src="./assets/chars_icon/${post.id}.png" alt="${post.name}">
-                    <div class="name">${post.name}</div>
-                    <div class="attribute" style="background-color: ${bgattribute(post.attribute)};">${post.attribute} ${post.weapon}</div>
-                </div>`;
-            list.insertAdjacentHTML("beforeend", resonator);
-            counter++;
-        })
-        //count resonators
-        document.getElementById("counter").innerHTML = counter;
+        return true;
+    });
+
+    filteredData.forEach(post => {
+        const resonator = `
+            <div class="item">
+                <img src="./assets/chars_icon/${post.id}.png" alt="${post.name}">
+                <div class="name">${post.name}</div>
+                <div class="attribute" style="background-color: ${bgattribute(post.attribute)};">
+                    ${post.attribute} ${post.weapon}
+                </div>
+            </div>
+        `;
+        list.insertAdjacentHTML("beforeend", resonator);
+        counter++;
+    });
+
+    document.getElementById("counter").innerHTML = counter;
 }
 
-loadWutheringData();
-
-function toggleValue(element, value) {
-    const index = filterAtribut.indexOf(value);
+function toggleValueAttribute(element, value) {
+    const index = filterRules.attribute.indexOf(value);
 
     if (index === -1) {
-        filterAtribut.push(value);
+        filterRules.attribute.push(value);
     } else {
-        filterAtribut.splice(index, 1);
+        filterRules.attribute.splice(index, 1);
     }
 
-    document.getElementById('filter-value').value = filterAtribut;
+    document.getElementById('filter-value-attribute').value = filterRules.attribute;
     document.getElementById("list").innerHTML = "";
     loadWutheringData();
 }
 
+function toggleValueWeapon(element, value) {
+    const index = filterRules.weapon.indexOf(value);
+
+    if (index === -1) {
+        filterRules.weapon.push(value);
+    } else {
+        filterRules.weapon.splice(index, 1);
+    }
+
+    document.getElementById('filter-value-weapon').value = filterRules.weapon;
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+}
+
+function toggleValueRarity(element, value) {
+    const index = filterRules.rarity.indexOf(value);
+
+    if (index === -1) {
+        filterRules.rarity.push(value);
+    } else {
+        filterRules.rarity.splice(index, 1);
+    }
+
+    document.getElementById('filter-value-rarity').value = filterRules.rarity;
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+}
+
+function resetValueFilter(){
+    filterRules.attribute.length = 0;
+    filterRules.weapon.length = 0;
+    filterRules.rarity.length = 0;
+    document.getElementById('filter-value-attribute').value = "";
+    document.getElementById('filter-value-weapon').value = "";
+    document.getElementById('filter-value-rarity').value = "";
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+}
+
+loadWutheringData();
+
 function bgattribute(value) {
-    if (value === "Spectro") return "#BBA91D";
-    if (value === "Fusion")  return "#c62b4d";
-    if (value === "Aero")    return "#2DC59D";
-    if (value === "Glacio")  return "#39B0D3";
-    if (value === "Havoc")   return "#971654";
-    if (value === "Electro") return "#A833B1";
-    return "green";
+    const colors = {
+        Spectro:  "#BBA91D",
+        Fusion:   "#c62b4d",
+        Aero:     "#2DC59D",
+        Glacio:   "#39B0D3",
+        Havoc:    "#971654",
+        Electro:  "#A833B1"
+    };
+
+    return colors[value] || "#999";
 }
 
 
 
 
 //-----------------------------   TEST   ---------------------------------------------
+
+
 
