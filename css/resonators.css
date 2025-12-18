@@ -11,26 +11,34 @@
     position: relative;
     height: 120px;
     width: 120px;
-    background-color: pink;
-    font-size: 12pt;
+    border: 2px black solid;
+    font-size: 10pt;
+    background-color: white;
+}
+img{
+    position: absolute;
+    /*without tailwind */
+    max-width: 100%;
+    height: auto;  
 }
 .name{
     position: absolute;
-    bottom: 8px;
-    left: 16px;
-
-    color: blue;
+    bottom: 0px;
+    left: 0px;
+    background-color: #3A332A;
+    color: white;
+    padding: 5px 10px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .attribute{
+
+    --test: "hia";
     position: absolute;
-    top: 8px;
-    right: 16px;
-    color: red;
-
+    top: 0px;
+    right: 0px;
+    color: white;
+    padding: 5px 10px;
+    border-bottom-left-radius: 15px;
+    border: 1px white solid;
 }
-
-
-
-
-
-
