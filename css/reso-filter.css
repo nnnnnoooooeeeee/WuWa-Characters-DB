@@ -7,58 +7,95 @@
     "counter counter weapon weapon weapon weapon"
     "counter counter rarity rarity rarity rarity";
 }
-/*sort*/
+.textbox-container{
+    display: none;
+}
+
 .dropdown-sort{
     grid-area: dropdown-sort;
 }
-/*attribute*/
-.attribute-container{
+
+.attribute-container {
     grid-area: attri;
-    background-color: lightblue;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    
 }
-.attri{
-    background-color: "";
-}
-.attri:hover{
-    background-color: lightskyblue;
-}
-/*weapon*/
+
 .weapon-container{
     grid-area: weapon;
-    background-color: lightpink;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 }
-.weapon{
-    background-color: "";
-}
-.weapon:hover{
-    background-color: pink;
-}
-/*rarity*/
+
 .rarity-container{
     grid-area: rarity;
-    background-color: lightcoral;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 
 }
-.rarity{
-    background-color: "";
+
+.attri-btn,
+.weapon-btn,
+.rarity-btn {
+    position: relative;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
 }
-.rarity:hover{
-    background-color: coral;
+
+.attri-btn:hover,
+.weapon-btn:hover,
+.rarity-btn:hover {
+    border-color: black;
 }
+
+.attri-btn.active,
+.weapon-btn.active,
+.rarity-btn.active {
+    border-color: black;
+}
+
+.attri-btn::after,
+.weapon-btn::after,
+.rarity-btn::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    padding: 2px 6px;
+    background: black;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.attri-btn:hover::after,
+.weapon-btn:hover::after,
+.rarity-btn:hover::after {
+    opacity: 1;
+}
+
 /*Counter*/
 .counter{
     grid-area: counter;
     background-color: rgb(255, 122, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;  
 }
 .sort-btn{
     grid-area: sort-btn;
     background-color: rgb(224, 250, 131);
-    //width: 10%;
+    /*width: 10%;*/
 }
+
