@@ -110,7 +110,24 @@ function bgattribute(value) {
     return colors[value] || "#999";
 }
 
-
+document.querySelectorAll(".attri-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        toggleValueAttribute(btn, btn.dataset.value);
+    });
+    });
+    document.querySelectorAll(".weapon-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        toggleValueWeapon(btn, btn.dataset.value);
+    });
+    });
+    document.querySelectorAll(".rarity-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        toggleValueRarity(btn, btn.dataset.value);
+    });
+});
 
 
 //-----------------------------   TEST   ---------------------------------------------
