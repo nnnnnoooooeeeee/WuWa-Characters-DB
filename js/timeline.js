@@ -6,13 +6,13 @@ async function loadTimeline() {
 
     data.forEach(post => {
         const resonator = `
-            <div class="timeline-container right">
-                <div class="date">${post.date}</div>
+            <div class="timeline-date">
+                <div class="right">${post.date}</div>
             </div>
             <div class="middle-bar">
                 <div class="dot"></div>
             </div>
-            <div class="timeline-container timeline-bg">
+            <div class="timeline-item">
                 <h2>${post.title}</h2>
                 <h3>${post.tag}</h3>
                 <p>${post.desc}</p> 
