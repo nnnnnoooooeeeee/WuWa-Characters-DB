@@ -18,7 +18,7 @@
 .attribute-container {
     grid-area: attri;
     display: flex;
-    gap: 12px;
+    gap:12px;
     flex-wrap: wrap;
     
 }
@@ -97,5 +97,14 @@
     grid-area: sort-btn;
     background-color: rgb(224, 250, 131);
     /*width: 10%;*/
+}
+.filter-btn{
+    width: 40px;
+    height: auto;
+    filter: brightness(0) invert(1);
+}
+.four-stars{
+    clip-path: inset(0 20% 0 0);
+    transform: translateX(10%);
 }
 

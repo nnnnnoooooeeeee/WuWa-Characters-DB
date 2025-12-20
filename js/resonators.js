@@ -10,7 +10,7 @@ const filterRules = {
 };
 
 async function loadWutheringData() {
-    const res = await fetch('./wuwa_data.json');
+    const res = await fetch('./json/wuwa_data.json');
     const data = await res.json();
     let counter = 0;
 
@@ -28,10 +28,11 @@ async function loadWutheringData() {
     filteredData.forEach(post => {
         const resonator = `
             <div class="item">
-                <img src="./assets/chars_icon/${post.id}.png" alt="${post.name}">
+                <img class="img-reso" src="./assets/chars_icon/${post.id}.png" alt="${post.name}">
                 <div class="name">${post.name}</div>
                 <div class="attribute" style="background-color: ${bgattribute(post.attribute)};">
-                    ${post.attribute} ${post.weapon}
+                    <img class="img-attribute" src="./assets/attributes/${post.attribute}.png"">
+                    <img class="img-attribute" src="./assets/weapons/${post.weapon}.webp"">
                 </div>
             </div>
         `;
