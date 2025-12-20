@@ -3,18 +3,29 @@
     max-width: 750px;
     padding: 25px;
     display: grid;
-    color: white;
+    color: rgb(255, 255, 255);
     grid-template-columns: 1fr 3px 1fr;
-}
-.timeline-container{
-    margin: 0 20px 20px 20px;
 }
 .right{
     text-align: right;
 }
+.timeline-date{
+    /*grid-area: date;*/
+    margin: 0 20px 20px 20px;
+}
+
 .middle-bar{
+    /*grid-area: middle;*/
     position: relative;
     background-color: white;
+}
+.timeline-item{
+    /* grid-area: item; */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 0 20px 20px 20px;
 }
 .dot{
     position: absolute;
@@ -26,9 +37,27 @@
     background-color: white;
     border-radius: 50%;
 }
-.timeline-bg{
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+
+/* ===== MOBILE ===== */
+@media (max-width: 548px) {
+    .timeline{
+        display: grid;
+        grid-template-areas:
+            "middle date"
+            "middle item";
+        grid-template-columns: 3px 1fr;
+        
+    }
+
+    .middle-bar{
+        grid-area: middle;
+    }
+
+    .timeline-date{
+        grid-area: date;
+    }
+
+    .timeline-item{
+        grid-area: item;
+    }
 }
