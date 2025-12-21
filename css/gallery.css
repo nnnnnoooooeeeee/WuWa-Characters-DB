@@ -1,31 +1,33 @@
 .timeline {
     margin: 0 auto;
-    max-width: 750px;
-    padding: 25px;
+    max-width: auto;
+    padding: 20px;
     display: grid;
     color: rgb(255, 255, 255);
-    grid-template-columns: 1fr 3px 1fr;
+}
+.timeline-row{
+        display: grid;
+        grid-template-columns: 3px 1fr;
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr 3px 1fr;
 }
 .right{
     text-align: right;
 }
 .timeline-date{
-    /*grid-area: date;*/
-    margin: 0 20px 20px 20px;
+    margin: -10px 20px 20px 20px;
 }
 
 .middle-bar{
-    /*grid-area: middle;*/
     position: relative;
     background-color: white;
 }
 .timeline-item{
-    /* grid-area: item; */
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    margin: 0 20px 20px 20px;
+    margin: 0px 20px 20px 20px;
 }
 .dot{
     position: absolute;
@@ -41,11 +43,18 @@
 /* ===== MOBILE ===== */
 @media (max-width: 548px) {
     .timeline{
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 25px;
+    }
+
+    .timeline-row{
         display: grid;
+        grid-template-columns: 3px 1fr;
+        grid-template-rows: auto auto;
         grid-template-areas:
             "middle date"
             "middle item";
-        grid-template-columns: 3px 1fr;
         
     }
 
@@ -55,9 +64,16 @@
 
     .timeline-date{
         grid-area: date;
+        margin: -10px 20px 20px 20px;
     }
 
     .timeline-item{
         grid-area: item;
+        border-radius: 10px;
+        margin: 0px 10px 30px 20px;
+    }
+
+    .right{
+        text-align: left;
     }
 }
