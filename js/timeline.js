@@ -15,7 +15,7 @@ async function loadTimeline() {
                 </div>
                 <div class="timeline-item">
                     <h2>${post.title}</h2>
-                    <h3>${post.tag}</h3>
+                    <h3 class="item-tag">${post.tag}</h3>
                     <p>${post.desc}</p> 
                 </div>
             </div>
