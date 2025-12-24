@@ -530,4 +530,17 @@
   "rarity": "4",
   "version": "2.8",
   "release": "2025-12-11"
+},
+{
+  "id": "42",
+  "name": "Lynae",
+  "affiliation": "Startorch Academy",
+  "gender": "F",
+  "attribute": "Spectro",
+  "weapon": "Pistols",
+  "birthday": "Unknown",
+  "va": "",
+  "rarity": "5",
+  "version": "3.0",
+  "release": "2025-12-25"
 }]
