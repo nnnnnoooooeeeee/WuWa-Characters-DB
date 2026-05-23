@@ -162,7 +162,9 @@
 
 .attribute-container,
 .weapon-container,
-.rarity-container {
+.rarity-container,
+.gender-container,
+.affiliation-container {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -172,7 +174,9 @@
 /* ===== Filter buttons ===== */
 .attri-btn,
 .weapon-btn,
-.rarity-btn {
+.rarity-btn,
+.gender-btn,
+.affiliation-btn {
     position: relative;
     padding: 8px 12px;
     background: rgba(255, 255, 255, 0.04);
@@ -183,11 +187,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    color: #e7e7ea;
+    font-family: inherit;
 }
 
 .attri-btn:hover,
 .weapon-btn:hover,
-.rarity-btn:hover {
+.rarity-btn:hover,
+.gender-btn:hover,
+.affiliation-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
@@ -195,13 +203,15 @@
 
 .attri-btn.active,
 .weapon-btn.active,
-.rarity-btn.active {
+.rarity-btn.active,
+.gender-btn.active,
+.affiliation-btn.active {
     background: rgba(255, 255, 255, 0.15);
     border-color: #ffd76a;
     box-shadow: 0 0 12px rgba(255, 215, 106, 0.4);
 }
 
-/* tooltip */
+/* tooltip — only for icon buttons (gender uses visible label) */
 .attri-btn::after,
 .weapon-btn::after,
 .rarity-btn::after {
@@ -226,6 +236,38 @@
 .weapon-btn:hover::after,
 .rarity-btn:hover::after {
     opacity: 1;
+}
+
+/* gender button — uses text label instead of icon */
+.gender-btn {
+    padding: 8px 18px;
+    min-width: 100px;
+    color: #e7e7ea;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.gender-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gender-btn[data-value="M"] .gender-label::first-letter {
+    color: #6fb6ff;
+}
+.gender-btn[data-value="F"] .gender-label::first-letter {
+    color: #ff8fb1;
+}
+
+/* affiliation button — text label, varying widths */
+.affiliation-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
 }
 
 /* ===== Icon images ===== */
@@ -336,22 +378,42 @@
         gap: 6px;
         width: 100%;
     }
-    .rarity-container {
+    .rarity-container,
+    .gender-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
         width: 100%;
     }
+    .affiliation-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        width: 100%;
+    }
     .attri-btn,
     .weapon-btn,
-    .rarity-btn {
+    .rarity-btn,
+    .gender-btn {
         padding: 8px 4px;
         border-radius: 6px;
         width: 100%;
     }
+    .gender-btn {
+        min-width: 0;
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+    .affiliation-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex: 1 1 auto;
+    }
     .attri-btn:hover,
     .weapon-btn:hover,
-    .rarity-btn:hover {
+    .rarity-btn:hover,
+    .gender-btn:hover,
+    .affiliation-btn:hover {
         transform: none;
     }
     .filter-btn {
@@ -400,9 +462,20 @@
     .rarity-btn {
         padding: 6px 2px;
     }
+    .gender-btn {
+        padding: 9px 6px;
+        font-size: 13px;
+    }
+    .affiliation-btn {
+        padding: 7px 10px;
+        font-size: 11px;
+        letter-spacing: 0.2px;
+    }
     .attribute-container,
     .weapon-container { gap: 4px; }
-    .rarity-container  { gap: 6px; }
+    .rarity-container,
+    .gender-container  { gap: 6px; }
+    .affiliation-container { gap: 4px; }
     /* hide hover tooltips on touch — tidak berguna + ganggu layout */
     .attri-btn::after,
     .weapon-btn::after,
@@ -430,14 +503,18 @@
 @media (hover: none) {
     .attri-btn:hover,
     .weapon-btn:hover,
-    .rarity-btn:hover {
+    .rarity-btn:hover,
+    .gender-btn:hover,
+    .affiliation-btn:hover {
         transform: none;
         background: rgba(255, 255, 255, 0.04);
         border-color: rgba(255, 255, 255, 0.1);
     }
     .attri-btn:active,
     .weapon-btn:active,
-    .rarity-btn:active {
+    .rarity-btn:active,
+    .gender-btn:active,
+    .affiliation-btn:active {
         background: rgba(255, 255, 255, 0.15);
         border-color: #ffd76a;
     }

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const d=require\\('./json/wuwa_data.json'\\); console.log\\([...new Set\\(d.map\\(p=>p.affiliation\\)\\)].sort\\(\\).join\\('\\\\n'\\)\\)\")"
+    ]
+  }
+}

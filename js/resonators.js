@@ -2,11 +2,15 @@ const list = document.getElementById("list");
 const filterAtribut = [];
 const filterWeapon = [];
 const filterRarity = [];
+const filterGender = [];
+const filterAffiliation = [];
 const reset = [];
 const filterRules = {
     attribute: filterAtribut,
     weapon: filterWeapon,
-    rarity: filterRarity
+    rarity: filterRarity,
+    gender: filterGender,
+    affiliation: filterAffiliation
 };
 
 const sortState = {
@@ -59,7 +63,12 @@ async function loadWutheringData() {
         for (const key in filterRules) {
             if (!filterRules[key] || filterRules[key].length === 0) continue;
 
-            if (!filterRules[key].includes(post[key])) {
+            if (key === "gender") {
+                // post.gender can be "M", "F", or "M/F" — split and check overlap
+                const charGenders = String(post.gender).split("/");
+                const match = filterRules.gender.some(g => charGenders.includes(g));
+                if (!match) return false;
+            } else if (!filterRules[key].includes(post[key])) {
                 return false;
             }
         }
@@ -128,14 +137,42 @@ function toggleValueRarity(element, value) {
     loadWutheringData();
 }
 
+function toggleValueGender(element, value) {
+    const index = filterRules.gender.indexOf(value);
+
+    if (index === -1) {
+        filterRules.gender.push(value);
+    } else {
+        filterRules.gender.splice(index, 1);
+    }
+
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+}
+
+function toggleValueAffiliation(element, value) {
+    const index = filterRules.affiliation.indexOf(value);
+
+    if (index === -1) {
+        filterRules.affiliation.push(value);
+    } else {
+        filterRules.affiliation.splice(index, 1);
+    }
+
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+}
+
 function resetValueFilter(){
     filterRules.attribute.length = 0;
     filterRules.weapon.length = 0;
     filterRules.rarity.length = 0;
+    filterRules.gender.length = 0;
+    filterRules.affiliation.length = 0;
     document.getElementById('filter-value-attribute').value = "";
     document.getElementById('filter-value-weapon').value = "";
     document.getElementById('filter-value-rarity').value = "";
-    document.querySelectorAll(".attri-btn.active, .weapon-btn.active, .rarity-btn.active")
+    document.querySelectorAll(".attri-btn.active, .weapon-btn.active, .rarity-btn.active, .gender-btn.active, .affiliation-btn.active")
         .forEach(btn => btn.classList.remove("active"));
     document.getElementById("dropdown-sort").selectedIndex = 0;
     sortState.key = null;
@@ -174,6 +211,46 @@ document.querySelectorAll(".attri-btn").forEach(btn => {
         toggleValueRarity(btn, btn.dataset.value);
     });
 });
+document.querySelectorAll(".gender-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        toggleValueGender(btn, btn.dataset.value);
+    });
+});
+async function buildAffiliationFilter() {
+    const container = document.getElementById("affiliation-container");
+    if (!container) return;
+
+    const res = await fetch('./json/wuwa_data.json');
+    const data = await res.json();
+
+    const affiliations = [...new Set(data.map(p => p.affiliation).filter(Boolean))];
+
+    // sort alphabetically, push "Other" & "Unknown" to the end
+    const lowPriority = new Set(["Other", "Unknown"]);
+    affiliations.sort((a, b) => {
+        const aLow = lowPriority.has(a);
+        const bLow = lowPriority.has(b);
+        if (aLow !== bLow) return aLow ? 1 : -1;
+        return a.localeCompare(b);
+    });
+
+    const frag = document.createDocumentFragment();
+    affiliations.forEach(value => {
+        const btn = document.createElement("button");
+        btn.className = "affiliation-btn";
+        btn.dataset.value = value;
+        btn.textContent = value;
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("active");
+            toggleValueAffiliation(btn, value);
+        });
+        frag.appendChild(btn);
+    });
+    container.appendChild(frag);
+}
+
+buildAffiliationFilter();
 
 document.getElementById("dropdown-sort").addEventListener("change", (e) => {
     sortState.key = e.target.value || null;
