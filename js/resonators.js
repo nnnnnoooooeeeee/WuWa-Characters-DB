@@ -4,13 +4,15 @@ const filterWeapon = [];
 const filterRarity = [];
 const filterGender = [];
 const filterAffiliation = [];
+const filterVersion = []; // array of {min, max} ranges
 const reset = [];
 const filterRules = {
     attribute: filterAtribut,
     weapon: filterWeapon,
     rarity: filterRarity,
     gender: filterGender,
-    affiliation: filterAffiliation
+    affiliation: filterAffiliation,
+    version: filterVersion
 };
 
 const sortState = {
@@ -67,6 +69,10 @@ async function loadWutheringData() {
                 // post.gender can be "M", "F", or "M/F" — split and check overlap
                 const charGenders = String(post.gender).split("/");
                 const match = filterRules.gender.some(g => charGenders.includes(g));
+                if (!match) return false;
+            } else if (key === "version") {
+                const v = parseFloat(post.version);
+                const match = filterRules.version.some(r => v >= r.min - 1e-9 && v <= r.max + 1e-9);
                 if (!match) return false;
             } else if (!filterRules[key].includes(post[key])) {
                 return false;
@@ -163,16 +169,30 @@ function toggleValueAffiliation(element, value) {
     loadWutheringData();
 }
 
+function toggleValueVersion(element, min, max) {
+    const index = filterRules.version.findIndex(r => r.min === min && r.max === max);
+
+    if (index === -1) {
+        filterRules.version.push({ min, max });
+    } else {
+        filterRules.version.splice(index, 1);
+    }
+
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+}
+
 function resetValueFilter(){
     filterRules.attribute.length = 0;
     filterRules.weapon.length = 0;
     filterRules.rarity.length = 0;
     filterRules.gender.length = 0;
     filterRules.affiliation.length = 0;
+    filterRules.version.length = 0;
     document.getElementById('filter-value-attribute').value = "";
     document.getElementById('filter-value-weapon').value = "";
     document.getElementById('filter-value-rarity').value = "";
-    document.querySelectorAll(".attri-btn.active, .weapon-btn.active, .rarity-btn.active, .gender-btn.active, .affiliation-btn.active")
+    document.querySelectorAll(".attri-btn.active, .weapon-btn.active, .rarity-btn.active, .gender-btn.active, .affiliation-btn.active, .version-btn.active")
         .forEach(btn => btn.classList.remove("active"));
     document.getElementById("dropdown-sort").selectedIndex = 0;
     sortState.key = null;
@@ -251,6 +271,49 @@ async function buildAffiliationFilter() {
 }
 
 buildAffiliationFilter();
+
+async function buildVersionFilter() {
+    const container = document.getElementById("version-container");
+    if (!container) return;
+
+    const res = await fetch('./json/wuwa_data.json');
+    const data = await res.json();
+
+    // group versions by major (e.g. 1.0,1.1,..,1.4 -> major 1)
+    const groups = new Map(); // major -> Set of minors
+    data.forEach(p => {
+        const v = parseFloat(p.version);
+        if (isNaN(v)) return;
+        const major = Math.floor(v);
+        if (!groups.has(major)) groups.set(major, new Set());
+        groups.get(major).add(Number(v.toFixed(1)));
+    });
+
+    const ranges = [...groups.entries()]
+        .map(([major, minors]) => {
+            const vals = [...minors].sort((a, b) => a - b);
+            return { min: vals[0], max: vals[vals.length - 1] };
+        })
+        .sort((a, b) => a.min - b.min);
+
+    const frag = document.createDocumentFragment();
+    ranges.forEach(({ min, max }) => {
+        const label = min === max ? min.toFixed(1) : `${min.toFixed(1)} - ${max.toFixed(1)}`;
+        const btn = document.createElement("button");
+        btn.className = "version-btn";
+        btn.dataset.min = min;
+        btn.dataset.max = max;
+        btn.textContent = label;
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("active");
+            toggleValueVersion(btn, min, max);
+        });
+        frag.appendChild(btn);
+    });
+    container.appendChild(frag);
+}
+
+buildVersionFilter();
 
 document.getElementById("dropdown-sort").addEventListener("change", (e) => {
     sortState.key = e.target.value || null;
