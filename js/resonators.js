@@ -70,13 +70,13 @@ async function loadWutheringData() {
 
     sortedData.forEach(post => {
         const resonator = `
-            <div class="item">
+            <div class="item" data-rarity="${post.rarity}" data-attribute="${post.attribute}">
                 <img class="img-reso" src="./assets/chars_icon/${post.id}.png" alt="${post.name}">
-                <div class="name">${post.name}</div>
-                <div class="attribute" style="background-color: ${bgattribute(post.attribute)};">
-                    <img class="img-attribute" src="./assets/attributes/${post.attribute}.png"">
-                    <img class="img-attribute" src="./assets/weapons/${post.weapon}.webp"">
+                <div class="attribute">
+                    <img class="img-attribute" src="./assets/attributes/${post.attribute}.png" alt="${post.attribute}">
+                    <img class="img-attribute" src="./assets/weapons/${post.weapon}.webp" alt="${post.weapon}">
                 </div>
+                <div class="name">${post.name}</div>
             </div>
         `;
         list.insertAdjacentHTML("beforeend", resonator);
@@ -155,19 +155,6 @@ function updateSortBtnLabel() {
 }
 
 loadWutheringData();
-
-function bgattribute(value) {
-    const colors = {
-        Spectro:  "#BBA91D",
-        Fusion:   "#c62b4d",
-        Aero:     "#2DC59D",
-        Glacio:   "#39B0D3",
-        Havoc:    "#971654",
-        Electro:  "#A833B1"
-    };
-
-    return colors[value] || "#999";
-}
 
 document.querySelectorAll(".attri-btn").forEach(btn => {
     btn.addEventListener("click", () => {

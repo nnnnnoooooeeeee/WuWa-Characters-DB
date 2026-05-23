@@ -250,19 +250,198 @@
 /* ===== Responsive ===== */
 @media (max-width: 720px) {
     .filter-container {
-        padding: 16px;
+        padding: 14px;
         margin: 12px;
+        gap: 14px;
+        border-radius: 10px;
     }
-    .filter-row {
+
+    /* Top bar — stack VERTICAL, semua kontrol full width
+       supaya tidak berdempetan */
+    .filter-top {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
         gap: 10px;
+        padding-bottom: 14px;
+    }
+
+    /* Row 1: dropdown + ▲▼ */
+    .sort-group {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+    }
+    #dropdown-sort {
+        flex: 1;
+        min-width: 0;
+        font-size: 14px;
+        padding: 10px 12px;
+        min-height: 42px;
+    }
+    .sort-dir-group {
+        flex-shrink: 0;
+    }
+    .sort-dir-btn {
+        padding: 10px 16px;
+        min-height: 42px;
+        min-width: 44px;
+        font-size: 14px;
+    }
+
+    /* Row 2: counter (full width) */
+    .counter {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 14px;
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Row 3: reset (full width) */
+    .reset-btn {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 13px;
+        min-height: 42px;
+        justify-content: center;
+    }
+
+    /* Filter rows: label di atas, buttons di bawah */
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
     }
     .filter-label {
-        min-width: 100%;
+        min-width: 0;
+        width: 100%;
+        margin-bottom: 0;
     }
-    .counter {
-        margin-left: 0;
+
+    /* Tombol filter pakai grid — distribusi merata */
+    .attribute-container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+        width: 100%;
+    }
+    .weapon-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        width: 100%;
+    }
+    .rarity-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        width: 100%;
+    }
+    .attri-btn,
+    .weapon-btn,
+    .rarity-btn {
+        padding: 8px 4px;
+        border-radius: 6px;
+        width: 100%;
+    }
+    .attri-btn:hover,
+    .weapon-btn:hover,
+    .rarity-btn:hover {
+        transform: none;
+    }
+    .filter-btn {
+        width: 30px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-container {
+        padding: 12px;
+        margin: 10px 8px;
     }
     .filter-top {
-        justify-content: space-between;
+        gap: 8px;
+        padding-bottom: 12px;
+    }
+    #dropdown-sort {
+        font-size: 13px;
+        padding: 9px 10px;
+        min-height: 40px;
+    }
+    .sort-dir-btn {
+        padding: 9px 12px;
+        font-size: 13px;
+        min-height: 40px;
+    }
+    .counter,
+    .reset-btn {
+        padding: 9px 12px;
+        font-size: 13px;
+        min-height: 40px;
+    }
+    .reset-icon {
+        font-size: 14px;
+    }
+    .filter-label {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    .filter-btn {
+        width: 26px;
+    }
+    .attri-btn,
+    .weapon-btn,
+    .rarity-btn {
+        padding: 6px 2px;
+    }
+    .attribute-container,
+    .weapon-container { gap: 4px; }
+    .rarity-container  { gap: 6px; }
+    /* hide hover tooltips on touch — tidak berguna + ganggu layout */
+    .attri-btn::after,
+    .weapon-btn::after,
+    .rarity-btn::after {
+        display: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .filter-container {
+        padding: 10px;
+        margin: 8px 6px;
+    }
+    .filter-btn {
+        width: 22px;
+    }
+    .attri-btn,
+    .weapon-btn,
+    .rarity-btn {
+        padding: 5px 1px;
+    }
+}
+
+/* touch devices: hilangkan hover lift biar tidak stuck setelah tap */
+@media (hover: none) {
+    .attri-btn:hover,
+    .weapon-btn:hover,
+    .rarity-btn:hover {
+        transform: none;
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    .attri-btn:active,
+    .weapon-btn:active,
+    .rarity-btn:active {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #ffd76a;
+    }
+    .reset-btn:hover .reset-icon {
+        transform: none;
     }
 }

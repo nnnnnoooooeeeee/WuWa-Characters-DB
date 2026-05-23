@@ -1,56 +1,222 @@
-.list-container{
-    border: 5px solid black;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-start;
+/* ===== List grid ===== */
+.list-container {
+    max-width: 1280px;
+    margin: 28px auto;
+    padding: 0 16px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    border: none;
 }
-.item{
+
+/* ===== Card ===== */
+.item {
     position: relative;
-    height: 120px;
-    width: 120px;
-    border: 2px black solid;
-    font-size: 10pt;
-    background-color: white;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, #2a2a35 0%, #0f0f15 100%);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.25s;
+    isolation: isolate;
+    font-size: 13px;
+    color: #f0f0f3;
 }
-.img-reso{
+
+/* rarity-based background */
+.item[data-rarity="5"] {
+    background:
+        linear-gradient(180deg, rgba(184, 139, 59, 0.55) 0%, rgba(42, 31, 14, 0.35) 55%, rgba(15, 10, 5, 0.95) 100%),
+        radial-gradient(circle at 50% 18%, rgba(255, 215, 106, 0.35), transparent 60%),
+        #15110a;
+}
+
+.item[data-rarity="4"] {
+    background:
+        linear-gradient(180deg, rgba(122, 75, 166, 0.55) 0%, rgba(42, 21, 56, 0.35) 55%, rgba(15, 9, 30, 0.95) 100%),
+        radial-gradient(circle at 50% 18%, rgba(180, 140, 220, 0.32), transparent 60%),
+        #14091e;
+}
+
+/* hover */
+.item:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 215, 106, 0.55);
+    box-shadow:
+        0 14px 28px rgba(0, 0, 0, 0.7),
+        0 0 22px rgba(255, 215, 106, 0.25);
+    z-index: 2;
+}
+
+/* per-attribute hover glow */
+.item[data-attribute="Spectro"]:hover { box-shadow: 0 14px 28px rgba(0,0,0,0.7), 0 0 24px rgba(187, 169, 29, 0.55); }
+.item[data-attribute="Fusion"]:hover  { box-shadow: 0 14px 28px rgba(0,0,0,0.7), 0 0 24px rgba(198, 43, 77, 0.55); }
+.item[data-attribute="Aero"]:hover    { box-shadow: 0 14px 28px rgba(0,0,0,0.7), 0 0 24px rgba(45, 197, 157, 0.55); }
+.item[data-attribute="Glacio"]:hover  { box-shadow: 0 14px 28px rgba(0,0,0,0.7), 0 0 24px rgba(57, 176, 211, 0.55); }
+.item[data-attribute="Havoc"]:hover   { box-shadow: 0 14px 28px rgba(0,0,0,0.7), 0 0 24px rgba(151, 22, 84, 0.55); }
+.item[data-attribute="Electro"]:hover { box-shadow: 0 14px 28px rgba(0,0,0,0.7), 0 0 24px rgba(168, 51, 177, 0.55); }
+
+/* character image */
+.img-reso {
     position: absolute;
-    /*without tailwind */
-    max-width: 100%;
-    height: auto;  
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+    z-index: 1;
 }
-.name{
+
+.item:hover .img-reso {
+    transform: scale(1.06);
+}
+
+/* rarity badge top-left */
+.item::before {
+    content: attr(data-rarity) "★";
     position: absolute;
-    bottom: 0px;
-    left: 0px;
-    background-color: #3A332A;
-    color: white;
-    padding: 5px 10px;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    top: 8px;
+    left: 8px;
+    z-index: 3;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.5px;
 }
+
+.item[data-rarity="5"]::before {
+    color: #ffd76a;
+    border-color: rgba(255, 215, 106, 0.45);
+}
+
+.item[data-rarity="4"]::before {
+    color: #d6a4f5;
+    border-color: rgba(180, 140, 220, 0.45);
+}
+
+/* attribute + weapon icon pill (top-right) */
 .attribute {
     position: absolute;
-    top: 0;
-    right: 0;
-
+    top: 8px;
+    right: 8px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 6px;
-
-    color: white;
-    padding: 5px 10px;
-
-    border: 1px solid white;
-    border-bottom-left-radius: 15px;
-
-    font-size: clamp(12px, 1.2vw, 14px);
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 5px 4px;
+    z-index: 3;
+    backdrop-filter: blur(4px);
+    color: #fff;
 }
 
-/* icon */
 .img-attribute {
-    width: clamp(15px, 2vw, 22px);
-    height: auto;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+}
+
+/* name banner at bottom */
+.name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 60%, transparent);
+    color: #fff;
+    padding: 24px 10px 10px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    z-index: 2;
+    border-radius: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* empty state */
+.list-container:empty::after {
+    content: "Tidak ada resonator yang cocok dengan filter.";
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #8a8a95;
+    padding: 60px 20px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .list-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+        padding: 0 12px 28px;
+    }
+}
+
+@media (max-width: 540px) {
+    .list-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 10px 24px;
+    }
+    .item {
+        border-radius: 10px;
+    }
+    .img-attribute {
+        width: 18px;
+        height: 18px;
+    }
+    .attribute {
+        top: 6px;
+        right: 6px;
+        padding: 4px 3px;
+        gap: 3px;
+        border-radius: 6px;
+    }
+    .item::before {
+        font-size: 10px;
+        padding: 2px 6px;
+        top: 6px;
+        left: 6px;
+    }
+    .name {
+        font-size: 12px;
+        padding: 20px 6px 8px;
+        letter-spacing: 0.2px;
+    }
+}
+
+@media (max-width: 360px) {
+    .list-container {
+        gap: 8px;
+        padding: 0 8px 20px;
+    }
+    .img-attribute {
+        width: 16px;
+        height: 16px;
+    }
+    .name {
+        font-size: 11px;
+        padding: 18px 4px 6px;
+    }
+}
+
+/* disable hover lift on touch devices to prevent sticky hover after tap */
+@media (hover: none) {
+    .item:hover {
+        transform: none;
+    }
+    .item:hover .img-reso {
+        transform: none;
+    }
 }
