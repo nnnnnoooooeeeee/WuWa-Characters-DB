@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="./css/navbar.css">
       <link rel="stylesheet" href="./css/resonators.css">
@@ -27,67 +28,86 @@
             <input type="text" id="filter-value-rarity" name="fname" disabled><br><br>
          </div>
          
-         <button id="reset" onclick="resetValueFilter()">RESET</button>
-         
          <div class="filter-container">
-            <select id="dropdown-sort">
-               <option value="" disabled selected>-- Sort By --</option>
-               <option value="name">Name</option>
-               <option value="release-date">Release Date</option>
-               <option value="rarity">Rarity</option>
-               <option value="attribute">Attribute</option>
-               <option value="weapon">Weapon</option>
-               <option value="gender">Gender</option>
-               <option value="affiliation">Affiliation</option>
-            </select>
-            <div class="sort-btn" id="sort-btn"> ^v </div>
-            <div class="attribute-container">
-               <button class="attri-btn" data-value="Spectro">
-                  <img class="filter-btn" src="./assets/attributes/Spectro.png">
-               </button>
-               <button class="attri-btn" data-value="Havoc">
-                  <img class="filter-btn" src="./assets/attributes/Havoc.png">
-               </button>
-               <button class="attri-btn" data-value="Fusion">
-                  <img class="filter-btn" src="./assets/attributes/Fusion.png">
-               </button>
-               <button class="attri-btn" data-value="Electro">
-                  <img class="filter-btn" src="./assets/attributes/Electro.png">
-               </button>
-               <button class="attri-btn" data-value="Glacio">
-                  <img class="filter-btn" src="./assets/attributes/Glacio.png">
-               </button>
-               <button class="attri-btn" data-value="Aero">
-                  <img class="filter-btn" src="./assets/attributes/Aero.png">
+            <div class="filter-top">
+               <div class="sort-group">
+                  <select id="dropdown-sort">
+                     <option value="" disabled selected>-- Sort By --</option>
+                     <option value="name">Name</option>
+                     <option value="release-date">Release Date</option>
+                     <option value="rarity">Rarity</option>
+                     <option value="attribute">Attribute</option>
+                     <option value="weapon">Weapon</option>
+                     <option value="gender">Gender</option>
+                     <option value="affiliation">Affiliation</option>
+                  </select>
+                  <div class="sort-dir-group">
+                     <button class="sort-dir-btn" id="sort-asc" data-dir="asc" title="Ascending">▲</button>
+                     <button class="sort-dir-btn" id="sort-desc" data-dir="desc" title="Descending">▼</button>
+                  </div>
+               </div>
+               <div class="counter" id="counter">Total : 0</div>
+               <button class="reset-btn" id="reset" onclick="resetValueFilter()">
+                  <span class="reset-icon">⟳</span> RESET
                </button>
             </div>
 
-            <div class="weapon-container">
-               <button class="weapon-btn" data-value="Sword">
-                  <img class="filter-btn" src="./assets/weapons/Sword.webp">
-               </button>
-               <button class="weapon-btn" data-value="Broadblade">
-                  <img class="filter-btn" src="./assets/weapons/Broadblade.webp">
-               </button>
-               <button class="weapon-btn" data-value="Pistols">
-                  <img class="filter-btn" src="./assets/weapons/Pistols.webp">
-               </button>
-               <button class="weapon-btn" data-value="Rectifier">
-                  <img class="filter-btn" src="./assets/weapons/Rectifier.webp">
-               </button>
-               <button class="weapon-btn" data-value="Gauntlets">
-                  <img class="filter-btn" src="./assets/weapons/Gauntlets.webp">
-               </button>
+            <div class="filter-row">
+               <span class="filter-label">Attribute</span>
+               <div class="attribute-container">
+                  <button class="attri-btn" data-value="Spectro">
+                     <img class="filter-btn" src="./assets/attributes/Spectro.png">
+                  </button>
+                  <button class="attri-btn" data-value="Havoc">
+                     <img class="filter-btn" src="./assets/attributes/Havoc.png">
+                  </button>
+                  <button class="attri-btn" data-value="Fusion">
+                     <img class="filter-btn" src="./assets/attributes/Fusion.png">
+                  </button>
+                  <button class="attri-btn" data-value="Electro">
+                     <img class="filter-btn" src="./assets/attributes/Electro.png">
+                  </button>
+                  <button class="attri-btn" data-value="Glacio">
+                     <img class="filter-btn" src="./assets/attributes/Glacio.png">
+                  </button>
+                  <button class="attri-btn" data-value="Aero">
+                     <img class="filter-btn" src="./assets/attributes/Aero.png">
+                  </button>
+               </div>
             </div>
-            <div class="rarity-container">
-               <button class="rarity-btn" data-value="5">
-                  <img class="filter-btn" src="./assets/icons/5_rarity.png">
-               </button>
-               <button class="rarity-btn" data-value="4">
-                  <img class="filter-btn four-stars" src="./assets/icons/5_rarity.png">
-               </button>
+
+            <div class="filter-row">
+               <span class="filter-label">Weapon</span>
+               <div class="weapon-container">
+                  <button class="weapon-btn" data-value="Sword">
+                     <img class="filter-btn" src="./assets/weapons/Sword.webp">
+                  </button>
+                  <button class="weapon-btn" data-value="Broadblade">
+                     <img class="filter-btn" src="./assets/weapons/Broadblade.webp">
+                  </button>
+                  <button class="weapon-btn" data-value="Pistols">
+                     <img class="filter-btn" src="./assets/weapons/Pistols.webp">
+                  </button>
+                  <button class="weapon-btn" data-value="Rectifier">
+                     <img class="filter-btn" src="./assets/weapons/Rectifier.webp">
+                  </button>
+                  <button class="weapon-btn" data-value="Gauntlets">
+                     <img class="filter-btn" src="./assets/weapons/Gauntlets.webp">
+                  </button>
+               </div>
             </div>
-            <div class="counter" id="counter">Counter : </div>
+
+            <div class="filter-row">
+               <span class="filter-label">Rarity</span>
+               <div class="rarity-container">
+                  <button class="rarity-btn" data-value="5">
+                     <img class="filter-btn" src="./assets/icons/5_rarity.png">
+                  </button>
+                  <button class="rarity-btn" data-value="4">
+                     <img class="filter-btn four-stars" src="./assets/icons/5_rarity.png">
+                  </button>
+               </div>
+            </div>
          </div>
 
          <div class="list-container" id="list""></div>

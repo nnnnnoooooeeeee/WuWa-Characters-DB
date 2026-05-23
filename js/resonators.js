@@ -9,6 +9,47 @@ const filterRules = {
     rarity: filterRarity
 };
 
+const sortState = {
+    key: null,
+    direction: "asc"
+};
+
+// dropdown value -> JSON field name
+const sortKeyMap = {
+    "name": "name",
+    "release-date": "release",
+    "rarity": "rarity",
+    "attribute": "attribute",
+    "weapon": "weapon",
+    "gender": "gender",
+    "affiliation": "affiliation"
+};
+
+const numericSortKeys = new Set(["rarity"]);
+
+function sortData(data) {
+    if (!sortState.key) return data;
+    const field = sortKeyMap[sortState.key];
+    if (!field) return data;
+    const isNumeric = numericSortKeys.has(field);
+    const dir = sortState.direction === "asc" ? 1 : -1;
+
+    return [...data].sort((a, b) => {
+        let va = a[field];
+        let vb = b[field];
+        if (isNumeric) {
+            va = Number(va) || 0;
+            vb = Number(vb) || 0;
+            return (va - vb) * dir;
+        }
+        va = (va ?? "").toString().toLowerCase();
+        vb = (vb ?? "").toString().toLowerCase();
+        if (va < vb) return -1 * dir;
+        if (va > vb) return 1 * dir;
+        return 0;
+    });
+}
+
 async function loadWutheringData() {
     const res = await fetch('./json/wuwa_data.json');
     const data = await res.json();
@@ -25,7 +66,9 @@ async function loadWutheringData() {
         return true;
     });
 
-    filteredData.forEach(post => {
+    const sortedData = sortData(filteredData);
+
+    sortedData.forEach(post => {
         const resonator = `
             <div class="item">
                 <img class="img-reso" src="./assets/chars_icon/${post.id}.png" alt="${post.name}">
@@ -40,7 +83,7 @@ async function loadWutheringData() {
         counter++;
     });
 
-    document.getElementById("counter").innerHTML = counter;
+    document.getElementById("counter").innerHTML = "Total : " + counter;
 }
 
 function toggleValueAttribute(element, value) {
@@ -92,8 +135,23 @@ function resetValueFilter(){
     document.getElementById('filter-value-attribute').value = "";
     document.getElementById('filter-value-weapon').value = "";
     document.getElementById('filter-value-rarity').value = "";
+    document.querySelectorAll(".attri-btn.active, .weapon-btn.active, .rarity-btn.active")
+        .forEach(btn => btn.classList.remove("active"));
+    document.getElementById("dropdown-sort").selectedIndex = 0;
+    sortState.key = null;
+    sortState.direction = "asc";
+    updateSortBtnLabel();
     document.getElementById("list").innerHTML = "";
     loadWutheringData();
+}
+
+function updateSortBtnLabel() {
+    const asc = document.getElementById("sort-asc");
+    const desc = document.getElementById("sort-desc");
+    if (!asc || !desc) return;
+    const active = sortState.key ? sortState.direction : null;
+    asc.classList.toggle("active", active === "asc");
+    desc.classList.toggle("active", active === "desc");
 }
 
 loadWutheringData();
@@ -127,6 +185,33 @@ document.querySelectorAll(".attri-btn").forEach(btn => {
     btn.addEventListener("click", () => {
         btn.classList.toggle("active");
         toggleValueRarity(btn, btn.dataset.value);
+    });
+});
+
+document.getElementById("dropdown-sort").addEventListener("change", (e) => {
+    sortState.key = e.target.value || null;
+    if (sortState.key && !["asc", "desc"].includes(sortState.direction)) {
+        sortState.direction = "asc";
+    }
+    updateSortBtnLabel();
+    document.getElementById("list").innerHTML = "";
+    loadWutheringData();
+});
+
+document.querySelectorAll(".sort-dir-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const dir = btn.dataset.dir;
+        if (!sortState.key) {
+            const dropdown = document.getElementById("dropdown-sort");
+            const firstOpt = Array.from(dropdown.options).find(o => !o.disabled);
+            if (!firstOpt) return;
+            dropdown.value = firstOpt.value;
+            sortState.key = firstOpt.value;
+        }
+        sortState.direction = dir;
+        updateSortBtnLabel();
+        document.getElementById("list").innerHTML = "";
+        loadWutheringData();
     });
 });
 
