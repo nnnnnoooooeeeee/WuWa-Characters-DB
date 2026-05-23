@@ -547,7 +547,7 @@
 {
   "id": "43",
   "name": "Mornye",
-  "affiliation": "Startorch Academy",
+  "affiliation": "Spacetrek Collective",
   "gender": "F",
   "attribute": "Fusion",
   "weapon": "Broadblade",
@@ -586,7 +586,7 @@
 {
   "id": "46",
   "name": "Sigrika",
-  "affiliation": "Startorch Academy",
+  "affiliation": "The Roya Tribe",
   "gender": "F",
   "attribute": "Aero",
   "weapon": "Gauntlets",
@@ -599,7 +599,7 @@
 {
   "id": "47",
   "name": "Hiyuki",
-  "affiliation": "Startorch Academy",
+  "affiliation": "Flaming Sakura",
   "gender": "F",
   "attribute": "Glacio",
   "weapon": "Sword",
@@ -612,7 +612,7 @@
 {
   "id": "48",
   "name": "Denia",
-  "affiliation": "Startorch Academy",
+  "affiliation": "Other",
   "gender": "F",
   "attribute": "Fusion",
   "weapon": "Rectifier",
