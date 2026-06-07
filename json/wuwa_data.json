@@ -621,4 +621,30 @@
   "rarity": "5",
   "version": "3.3",
   "release": "2026-05-21"
+},
+{
+  "id": "49",
+  "name": "Lucy",
+  "affiliation": "Unknown",
+  "gender": "F",
+  "attribute": "Spectro",
+  "weapon": "Pistols",
+  "birthday": "Unknown",
+  "va": "",
+  "rarity": "5",
+  "version": "3.4",
+  "release": "2026-06-08"
+},
+{
+  "id": "50",
+  "name": "Rebecca",
+  "affiliation": "Unknown",
+  "gender": "F",
+  "attribute": "Electro",
+  "weapon": "Pistols",
+  "birthday": "Unknown",
+  "va": "",
+  "rarity": "5",
+  "version": "3.4",
+  "release": "2026-06-08"
 }]
